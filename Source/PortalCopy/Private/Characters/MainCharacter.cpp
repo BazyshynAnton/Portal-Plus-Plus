@@ -26,6 +26,9 @@ AMainCharacter::AMainCharacter()
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 360.f, 0.f);
 
+	// Jump Height
+	GetCharacterMovement()->JumpZVelocity = 300.f;
+
 	// Spring Arm and Camera
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(GetRootComponent());
@@ -67,8 +70,9 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	// Bind Actions using Enhanced Input
 	if (TObjectPtr<UEnhancedInputComponent> PlayerInput = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-		PlayerInput->BindAction(Movement2D, ETriggerEvent::Triggered, this, &AMainCharacter::Movement);
-		PlayerInput->BindAction(Look2D, ETriggerEvent::Triggered, this, &AMainCharacter::Look);
+		PlayerInput->BindAction(MovementAction, ETriggerEvent::Triggered, this, &AMainCharacter::Movement);
+		PlayerInput->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMainCharacter::Look);
+		PlayerInput->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AMainCharacter::Jump);
 	}
 
 }
@@ -95,4 +99,9 @@ void AMainCharacter::Look(const FInputActionInstance& Value)
 
 	AddControllerPitchInput(Looking.Y);
 	AddControllerYawInput(Looking.X);
+}
+
+void AMainCharacter::Jump()
+{
+	Super::Jump();
 }

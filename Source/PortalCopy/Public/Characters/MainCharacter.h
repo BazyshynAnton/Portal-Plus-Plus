@@ -19,22 +19,30 @@ class PORTALCOPY_API AMainCharacter : public ACharacter
 private:
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<USpringArmComponent> CameraBoom;
+
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCameraComponent> CameraComponent;
+
 protected:
-	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere, Category = Input)
 	TObjectPtr<UInputMappingContext> MainCharacterContext;
+
 	UPROPERTY(EditAnywhere, Category = Input)
-	TObjectPtr<UInputAction> Movement2D;
+	TObjectPtr<UInputAction> MovementAction;
+
 	UPROPERTY(EditAnywhere, Category = Input)
-	TObjectPtr<UInputAction> Look2D;
+	TObjectPtr<UInputAction> LookAction;
+
+	UPROPERTY(EditAnywhere, Category = Input)
+	TObjectPtr<UInputAction> JumpAction;
 
 public:	
 	AMainCharacter();
+	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	void Movement(const FInputActionInstance& Value);
 	void Look(const FInputActionInstance& Value);
+	virtual void Jump() override;
 
 };

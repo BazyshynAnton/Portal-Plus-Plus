@@ -23,18 +23,15 @@ AMainCharacter::AMainCharacter()
 	bUseControllerRotationRoll  = false;
 
 	// Orient Rotation Movement
-	GetCharacterMovement()->bOrientRotationToMovement = true;
-	GetCharacterMovement()->RotationRate = FRotator(0.f, 360.f, 0.f);
+	GetCharacterMovement()->bOrientRotationToMovement = false;
+	//GetCharacterMovement()->RotationRate = FRotator(0.f, 360.f, 0.f);
 
-	// Jump Height
+	// Jump Height / Velocity
 	GetCharacterMovement()->JumpZVelocity = 300.f;
 
-	// Spring Arm and Camera
-	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
-	CameraBoom->SetupAttachment(GetRootComponent());
-	CameraBoom->TargetArmLength = 300.f;
+	// Camera - 1st Person
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
-	CameraComponent->SetupAttachment(CameraBoom);
+	CameraComponent->SetupAttachment(GetMesh(), FName("head"));
 
 	// Possess player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;

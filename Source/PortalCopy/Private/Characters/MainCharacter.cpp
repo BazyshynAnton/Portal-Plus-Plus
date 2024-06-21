@@ -24,7 +24,6 @@ AMainCharacter::AMainCharacter()
 
 	// Orient Rotation Movement
 	GetCharacterMovement()->bOrientRotationToMovement = false;
-	//GetCharacterMovement()->RotationRate = FRotator(0.f, 360.f, 0.f);
 
 	// Jump Height / Velocity
 	GetCharacterMovement()->JumpZVelocity = 300.f;

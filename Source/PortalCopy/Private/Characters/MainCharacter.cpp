@@ -19,7 +19,7 @@ AMainCharacter::AMainCharacter()
 
 	// Rotation the Character on The Axis
 	bUseControllerRotationPitch = false;
-	bUseControllerRotationYaw   = false;
+	bUseControllerRotationYaw   = true;
 	bUseControllerRotationRoll  = false;
 
 	// Orient Rotation Movement
@@ -31,6 +31,7 @@ AMainCharacter::AMainCharacter()
 	// Camera - 1st Person
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
 	CameraComponent->SetupAttachment(GetMesh(), FName("head"));
+	CameraComponent->bUsePawnControlRotation = true;
 
 	// Possess player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;

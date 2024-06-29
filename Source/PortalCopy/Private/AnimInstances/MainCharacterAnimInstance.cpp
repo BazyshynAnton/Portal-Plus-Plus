@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "AnimInstances/MainCharacterAnimInstance.h"
 #include "PortalCopy/Public/Characters/MainCharacter.h"
 #include "Kismet/KismetMathLibrary.h"

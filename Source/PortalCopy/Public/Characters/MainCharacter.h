@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -10,6 +8,7 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
+class USkeletalMeshComponent;
 
 UCLASS()
 class PORTALCOPY_API AMainCharacter : public ACharacter
@@ -22,6 +21,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UCameraComponent> CameraComponent;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USkeletalMeshComponent> SkeletalMeshPortalGun;
 
 protected:
 	UPROPERTY(EditAnywhere, Category = Input)

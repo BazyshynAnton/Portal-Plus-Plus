@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "Characters/MainCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
@@ -32,6 +29,10 @@ AMainCharacter::AMainCharacter()
 	CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
 	CameraComponent->SetupAttachment(GetMesh(), FName("head"));
 	CameraComponent->bUsePawnControlRotation = true;
+
+	// Attach Portal Gun to MainCharacter
+	SkeletalMeshPortalGun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("PortalGun"));
+	SkeletalMeshPortalGun->SetupAttachment(GetMesh(), FName("portalGunSocket"));
 
 	// Possess player
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
